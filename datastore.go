@@ -92,6 +92,13 @@ func (ds *DataStore) Read(repo RepositoryID, oid ObjectID) ([]byte, error) {
 	return ds.objects[repo][oid], nil
 }
 
+// Update is the U in C.R.U.D and is responsible for overriding the data linked
+// to an object identifier. However, because the Create method already offers
+// overrides, this method is not necessary.
+func (ds *DataStore) Update(repo RepositoryID, data []byte) error {
+	return errNotImplemented
+}
+
 // generateOID calculates the SHA256 sum of an arbitrary list of bytes. The
 // function returns an object identifier with exactly sixty-four characters
 // that is supposed to be unique.

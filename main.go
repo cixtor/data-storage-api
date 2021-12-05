@@ -17,6 +17,8 @@ func handler(w http.ResponseWriter, req *http.Request) {
 		webDownload(w, req)
 		return
 	}
+
+	w.WriteHeader(http.StatusNotImplemented)
 }
 
 func main() {
