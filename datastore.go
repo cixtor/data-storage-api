@@ -99,6 +99,33 @@ func (ds *DataStore) Update(repo RepositoryID, data []byte) error {
 	return errNotImplemented
 }
 
+// Delete is the D in C.R.U.D and is responsible for finding and deleting the
+// data associated to an object identifier for a specific repository. Objects
+// with the same identifier in a different repository are left unmodified. If
+// the repository ends up empty after this object deletion, the repository is
+// also deleted.
+func (ds *DataStore) Delete(repo RepositoryID, oid ObjectID) error {
+	ds.RLock()
+	defer ds.RUnlock()
+
+	if _, exists := ds.objects[repo]; !exists {
+		return errRepositoryNotFound
+	}
+
+	if _, exists := ds.objects[repo][oid]; !exists {
+		return errObjectNotFound
+	}
+
+	delete(ds.objects[repo], oid)
+
+	// Delete the repository too, if empty.
+	if len(ds.objects[repo]) == 0 {
+		delete(ds.objects, repo)
+	}
+
+	return nil
+}
+
 // generateOID calculates the SHA256 sum of an arbitrary list of bytes. The
 // function returns an object identifier with exactly sixty-four characters
 // that is supposed to be unique.

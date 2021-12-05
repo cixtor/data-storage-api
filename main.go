@@ -18,6 +18,11 @@ func handler(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
+	if req.Method == "DELETE" {
+		webDelete(w, req)
+		return
+	}
+
 	w.WriteHeader(http.StatusNotImplemented)
 }
 
