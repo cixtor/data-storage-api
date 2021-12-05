@@ -1,7 +1,9 @@
 package main
 
 import (
+	"crypto/sha256"
 	"errors"
+	"fmt"
 	"sync"
 )
 
@@ -51,4 +53,13 @@ func NewDataStore() *DataStore {
 	ds := new(DataStore)
 	ds.objects = map[RepositoryID]map[ObjectID][]byte{}
 	return ds
+}
+
+// generateOID calculates the SHA256 sum of an arbitrary list of bytes. The
+// function returns an object identifier with exactly sixty-four characters
+// that is supposed to be unique.
+func (ds *DataStore) generateOID(data []byte) ObjectID {
+	hash := sha256.Sum256(data)
+	oid := fmt.Sprintf("%x", hash[:])
+	return ObjectID(oid)
 }
