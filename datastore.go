@@ -55,6 +55,25 @@ func NewDataStore() *DataStore {
 	return ds
 }
 
+// Create is the C in C.R.U.D. and is responsible for adding new objects into
+// the in-memory data storage. Because the object identifiers are based on the
+// content of the object, overrides are possible but not destructive.
+func (ds *DataStore) Create(repo RepositoryID, data []byte) ObjectID {
+	ds.Lock()
+	defer ds.Unlock()
+
+	// Record the new repository, if necessary.
+	if _, exists := ds.objects[repo]; !exists {
+		ds.objects[repo] = map[ObjectID][]byte{}
+	}
+
+	oid := ds.generateOID(data)
+
+	ds.objects[repo][oid] = data
+
+	return oid
+}
+
 // generateOID calculates the SHA256 sum of an arbitrary list of bytes. The
 // function returns an object identifier with exactly sixty-four characters
 // that is supposed to be unique.

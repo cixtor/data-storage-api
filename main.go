@@ -5,7 +5,14 @@ import (
 	"net/http"
 )
 
+var datastore = NewDataStore()
+
 func handler(w http.ResponseWriter, req *http.Request) {
+	if req.Method == "PUT" {
+		webUpload(w, req)
+		return
+	}
+
 	if req.Method == "GET" {
 		w.WriteHeader(http.StatusOK)
 	}
