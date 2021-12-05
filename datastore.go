@@ -74,6 +74,24 @@ func (ds *DataStore) Create(repo RepositoryID, data []byte) ObjectID {
 	return oid
 }
 
+// Read is the R in C.R.U.D and is responsible for finding and returning the
+// data associated to an object identifier in a specific repository. If the
+// repository or object does not exist, the method returns an error.
+func (ds *DataStore) Read(repo RepositoryID, oid ObjectID) ([]byte, error) {
+	ds.RLock()
+	defer ds.RUnlock()
+
+	if _, exists := ds.objects[repo]; !exists {
+		return nil, errRepositoryNotFound
+	}
+
+	if _, exists := ds.objects[repo][oid]; !exists {
+		return nil, errObjectNotFound
+	}
+
+	return ds.objects[repo][oid], nil
+}
+
 // generateOID calculates the SHA256 sum of an arbitrary list of bytes. The
 // function returns an object identifier with exactly sixty-four characters
 // that is supposed to be unique.
