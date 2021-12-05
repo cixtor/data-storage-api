@@ -14,7 +14,8 @@ func handler(w http.ResponseWriter, req *http.Request) {
 	}
 
 	if req.Method == "GET" {
-		w.WriteHeader(http.StatusOK)
+		webDownload(w, req)
+		return
 	}
 }
 
