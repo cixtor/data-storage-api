@@ -1,8 +1,18 @@
 package main
 
 import (
+	"errors"
 	"sync"
 )
+
+// errRepositoryNotFound is an error when the repository does not exist.
+var errRepositoryNotFound = errors.New("repository not found")
+
+// errObjectNotFound is an error when the object does not exist.
+var errObjectNotFound = errors.New("object not found")
+
+// errNotImplemented is an error when a function is not implemented.
+var errNotImplemented = errors.New("not implemented")
 
 // RepositoryID represents a unique repository identifier.
 type RepositoryID string
