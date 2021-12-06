@@ -1,86 +1,25 @@
-# Coding Exercise: Data Storage API
+## Code Challenge, GitHub Interview
 
-Implement a small HTTP service to store objects organized by repository.
-Clients of this service must implement the API below.
+I hope this repository helps someone else to get a job at GitHub. The code challenge is the same for all recent candidates (as of 2020-2022 according to multiple developers I asked), only in different programming languages (Ruby, JavaScript, Go).
 
+## Interview Process
 
-We value your time, and ask that you spend no more than **2 hours** on this exercise.
+1. Connect with a GitHub recruiter on LinkedIn
+2. Express interest in a job, for example, [this one](https://www.linkedin.com/jobs/view/3074872733/) ([mirror](JOB_DESCRIPTION.md))
+3. Talent Acquisition send you this link: https://interviews.githubapp.com
+4. You solve [the code challenge described here](CODE_CHALLENGE.md) in 2 hours or less
+5. You submit a pull-request like this → [PULL_REQUEST.md](PULL_REQUEST.md)
+6. GitHub Actions gives a “Good” or “Not Good” result to the recruiter
+7. Recruiter asks for your time availability for the technical interviews
+8. Talent Coordinator schedules 4 interviews each lasting 50 minutes
+  - Technical Interview 1 - Coding Exercise. Planning and Communication, Coding, Architecture
+  - Technical Interview 2 - Code Review Exercise. Best Practices, CS Fundamentals, Problem Solving, Communication
+  - Behavioral & Competency 1 - Engineering Culture, Inclusive Behaviors and Collaboration.
+  - Behavioral & Competency 2 - Technical Aptitude and Communication
+9. If you pass, you get an offer, a chance to negotiate, start a background check, and join in approximately 3-4 weeks.
 
-## General Requirements
+## My Results
 
-* The service should identify objects by their content. This means that two objects with the same content should be considered identical, and only one such object should be stored per repository.
-* Two objects with the same content that are in separate repositories should be stored separately.
-* The included tests should pass and should not be modified.
-* Do not move or rename any of the existing files.
-* The service must implement the API as described below.
-* The data can be persisted in memory, on disk, or wherever you like.
-* Prefer using the standard library over external dependencies. If you must include an external dependency, please explain your choice in the pull request.
+Although I passed the Talent Acquision screener, the code challenge with the code in this repository, and even scheduled the technical interviews, GitHub cancelled them because they *“[…] decided to pause hiring for this role at the time.”*. [Read the whole email here](INTERVIEW_RESULT.md).
 
-## Recommendations
-
-* Your code will be read by humans, please take the time to optimize for that.
-* Add extra tests to test the functionality of your implementation.
-* The description of your submission should be used to describe your reasoning, your assumptions and the tradeoffs in your implementation.
-* If your chosen language allows for concurrency, remember that this is a web application and concurrent requests will come in.
-* Focus on getting a working solution and avoid external dependencies for data storage.
-
-## API
-
-### Upload an Object
-
-```
-PUT /data/{repository}
-```
-
-#### Response
-
-```
-Status: 201 Created
-{
-  "oid": "2845f5a412dbdfacf95193f296dd0f5b2a16920da5a7ffa4c5832f223b03de96",
-  "size": 1234
-}
-```
-
-### Download an Object
-
-```
-GET /data/{repository}/{objectID}
-```
-
-#### Response
-
-```
-Status: 200 OK
-{object data}
-```
-
-Objects that are not on the server will return a `404 Not Found`.
-
-### Delete an Object
-
-```
-DELETE /data/{repository}/{objectID}
-```
-
-#### Response
-
-```
-Status: 200 OK
-```
-
-## Getting started and Testing
-
-In `main.go` you'll find a naive first draft of the answer to the exercise written for you. Please improve this draft so that it passes the test written in `main_test.go`. You can test this by running:
-
-```
-go test
-```
-
-## Submitting Your Work
-When you are finished:
-- Commit all of your code.
-- Push your changes to GitHub.
-- Open a [pull request](https://help.github.com/articles/creating-a-pull-request/).
-- Visit https://interviews.githubapp.com/ and click `Done`.
-- Thank you! 🎉
+I hope you, reader, have better luck than me.
