@@ -22,4 +22,6 @@ I hope this repository helps someone else to get a job at GitHub. The code chall
 
 Although I passed the Talent Acquision screener, the code challenge with the code in this repository, and even scheduled the technical interviews, GitHub cancelled them because they *“[…] decided to pause hiring for this role at the time.”*. [Read the whole email here](INTERVIEW_RESULT.md).
 
+@gergelyorosz confirmed the news on Twitter: https://twitter.com/GergelyOrosz/status/1549859797864005632 *“[…] both Google and GitHub is freezing hiring effective immediately. Everyone in the hiring pipeline impacted. GitHub is doing it because of economic conditions and Google likely as well.”*
+
 I hope you, reader, have better luck than me.
